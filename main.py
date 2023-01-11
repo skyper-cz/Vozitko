@@ -8,6 +8,10 @@ if __name__ == '__main__':
 
     pravyMotor = PiMotor.Motor("MOTOR1", 1)
     levyMotor = PiMotor.Motor("MOTOR2", 1)
+    sipkaVzad = PiMotor.Arrow(1)
+    sipkaVlevo = PiMotor.Arrow(2)
+    sipkaVpred = PiMotor.Arrow(3)
+    sipkaVpravo = PiMotor.Arrow(4)
     obaMotory = PiMotor.LinkedMotors(pravyMotor, levyMotor)
     ipina = "127.0.0.1"
     port = 5005
@@ -22,15 +26,31 @@ if __name__ == '__main__':
 
         if data == "w":
             print("Vpřed")
+            sipkaVpred.on()
+            sipkaVzad.off()
+            sipkaVlevo.off()
+            sipkaVpravo.off()
             obaMotory.forward(100)
         elif data == "a":
             print("otoc vlevo")
+            sipkaVpred.off()
+            sipkaVzad.off()
+            sipkaVlevo.on()
+            sipkaVpravo.off()
             levyMotor.reverse(100)
             pravyMotor.forward(100)
         elif data == "s":
             print("Vzad")
+            sipkaVpred.off()
+            sipkaVzad.on()
+            sipkaVlevo.off()
+            sipkaVpravo.off()
             obaMotory.reverse(100)
         elif data == "d":
             print("otoc vpravo")
+            sipkaVpred.off()
+            sipkaVzad.off()
+            sipkaVlevo.off()
+            sipkaVpravo.on()
             levyMotor.forward(100)
             pravyMotor.revrese(100)
