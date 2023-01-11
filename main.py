@@ -1,6 +1,5 @@
 import socket
 import PiMotor
-import time
 import RPi.GPIO as GPIO
 
 # Press the green button in the gutter to run the script.
