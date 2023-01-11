@@ -1,16 +1,36 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
+import socket
+import PiMotor
+import time
+import RPi.GPIO as GPIO
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    pravyMotor = PiMotor.Motor("MOTOR1", 1)
+    levyMotor = PiMotor.Motor("MOTOR2", 1)
+    obaMotory = PiMotor.LinkedMotors(pravyMotor, levyMotor)
+    ipina = "127.0.0.1"
+    port = 5005
+
+    sock = socket.socket(socket.AF_INET,  # Internet
+                         socket.SOCK_DGRAM)  # UDP
+    sock.bind((ipina, port))
+
+    while True:
+        data, addr = sock.recvfrom(1024)  # buffer size is 1024 bytes
+        print("received message: %s" % data)
+
+        if data == "w":
+            print("Vpřed")
+            obaMotory.forward(100)
+        elif data == "a":
+            print("otoc vlevo")
+            levyMotor.reverse(100)
+            pravyMotor.forward(100)
+        elif data == "s":
+            print("Vzad")
+            obaMotory.reverse(100)
+        elif data == "d":
+            print("otoc vpravo")
+            levyMotor.forward(100)
+            pravyMotor.revrese(100)
