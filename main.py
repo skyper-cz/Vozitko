@@ -63,7 +63,7 @@ if __name__ == '__main__':
             sipkaVlevo.off()
             sipkaVpravo.on()
             levyMotor.forward(100)
-            pravyMotor.revrese(100)
+            pravyMotor.reverse(100)
             time.sleep(0.5)
             levyMotor.stop()
             pravyMotor.stop()
