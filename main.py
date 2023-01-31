@@ -1,4 +1,5 @@
 import socket
+import time
 import PiMotor
 import RPi.GPIO as GPIO
 
@@ -30,6 +31,9 @@ if __name__ == '__main__':
             sipkaVlevo.off()
             sipkaVpravo.off()
             obaMotory.forward(100)
+            time.sleep(0.5)
+            obaMotory.stop()
+            sipkaVpred.off()
         elif data == "a":
             print("otoc vlevo")
             sipkaVpred.off()
@@ -38,6 +42,10 @@ if __name__ == '__main__':
             sipkaVpravo.off()
             levyMotor.reverse(100)
             pravyMotor.forward(100)
+            time.sleep(0.5)
+            levyMotor.stop()
+            pravyMotor.stop()
+            sipkaVlevo.off()
         elif data == "s":
             print("Vzad")
             sipkaVpred.off()
@@ -45,6 +53,9 @@ if __name__ == '__main__':
             sipkaVlevo.off()
             sipkaVpravo.off()
             obaMotory.reverse(100)
+            time.sleep(0.5)
+            obaMotory.stop()
+            sipkaVzad.off()
         elif data == "d":
             print("otoc vpravo")
             sipkaVpred.off()
@@ -53,3 +64,7 @@ if __name__ == '__main__':
             sipkaVpravo.on()
             levyMotor.forward(100)
             pravyMotor.revrese(100)
+            time.sleep(0.5)
+            levyMotor.stop()
+            pravyMotor.stop()
+            sipkaVpravo.off()
