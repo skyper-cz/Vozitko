@@ -13,7 +13,7 @@ if __name__ == '__main__':
     sipkaVpred = PiMotor.Arrow(3)
     sipkaVpravo = PiMotor.Arrow(4)
     obaMotory = PiMotor.LinkedMotors(pravyMotor, levyMotor)
-    ipina = "127.0.0.1"
+    ipina = "10.20.13.91"
     port = 5005
 
     sock = socket.socket(socket.AF_INET,  # Internet
@@ -23,6 +23,7 @@ if __name__ == '__main__':
     while True:
         data, addr = sock.recvfrom(1024)  # buffer size is 1024 bytes
         print("received message: %s" % data)
+        data = str(data)
 
         if data == 'w':
             print("Vpřed")
