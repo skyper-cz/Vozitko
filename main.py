@@ -25,7 +25,9 @@ if __name__ == '__main__':
         print("received message: %s" % data)
         data = data[1:].strip(b'\x00')
 
-        if data == b'w':
+        pokyn = data.decode('UTF-8')
+
+        if pokyn == 'w':
             print("Vpřed")
             sipkaVpred.on()
             sipkaVzad.off()
@@ -35,7 +37,7 @@ if __name__ == '__main__':
             time.sleep(0.5)
             obaMotory.stop()
             sipkaVpred.off()
-        elif data == b'a':
+        elif pokyn == 'a':
             print("otoc vlevo")
             sipkaVpred.off()
             sipkaVzad.off()
@@ -47,7 +49,7 @@ if __name__ == '__main__':
             levyMotor.stop()
             pravyMotor.stop()
             sipkaVlevo.off()
-        elif data == b's':
+        elif pokyn == 's':
             print("Vzad")
             sipkaVpred.off()
             sipkaVzad.on()
@@ -57,7 +59,7 @@ if __name__ == '__main__':
             time.sleep(0.5)
             obaMotory.stop()
             sipkaVzad.off()
-        elif data == b'd':
+        elif pokyn == 'd':
             print("otoc vpravo")
             sipkaVpred.off()
             sipkaVzad.off()
