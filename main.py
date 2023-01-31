@@ -24,8 +24,8 @@ if __name__ == '__main__':
         data, addr = sock.recvfrom(1024)  # buffer size is 1024 bytes
         print("received message: %s" % data)
         data = data[1:].strip(b'\x00')
-        
-        if data == 'w':
+
+        if data == b'w':
             print("Vpřed")
             sipkaVpred.on()
             sipkaVzad.off()
@@ -35,7 +35,7 @@ if __name__ == '__main__':
             time.sleep(0.5)
             obaMotory.stop()
             sipkaVpred.off()
-        elif data == 'a':
+        elif data == b'a':
             print("otoc vlevo")
             sipkaVpred.off()
             sipkaVzad.off()
@@ -47,7 +47,7 @@ if __name__ == '__main__':
             levyMotor.stop()
             pravyMotor.stop()
             sipkaVlevo.off()
-        elif data == 's':
+        elif data == b's':
             print("Vzad")
             sipkaVpred.off()
             sipkaVzad.on()
@@ -57,7 +57,7 @@ if __name__ == '__main__':
             time.sleep(0.5)
             obaMotory.stop()
             sipkaVzad.off()
-        elif data == 'd':
+        elif data == b'd':
             print("otoc vpravo")
             sipkaVpred.off()
             sipkaVzad.off()
