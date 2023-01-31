@@ -23,8 +23,8 @@ if __name__ == '__main__':
     while True:
         data, addr = sock.recvfrom(1024)  # buffer size is 1024 bytes
         print("received message: %s" % data)
-        data = str(data)
-
+        data = data[1:].strip(b'\x00')
+        
         if data == 'w':
             print("Vpřed")
             sipkaVpred.on()
