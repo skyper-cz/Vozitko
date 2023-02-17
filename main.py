@@ -12,7 +12,7 @@ if __name__ == '__main__':
     sipkaVpred = PiMotor.Arrow(3)
     sipkaVpravo = PiMotor.Arrow(4)
     obaMotory = PiMotor.LinkedMotors(pravyMotor, levyMotor)
-    ipina = "127.0.0.1"
+    ipina = "10.42.0.1"
     port = 5005
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -56,6 +56,32 @@ if __name__ == '__main__':
             sipkaVzad.off()
         elif data == b"d":
             print("otoc vpravo")
+            sipkaVpred.off()
+            sipkaVzad.off()
+            sipkaVlevo.off()
+            sipkaVpravo.on()
+            levyMotor.reverse(100)
+            pravyMotor.forward(100)
+            time.sleep(0.1)
+            levyMotor.stop()
+            pravyMotor.stop()
+            sipkaVpravo.off()
+
+        elif data == b"q":
+            print("Vpred vlevo")
+            sipkaVpred.off()
+            sipkaVzad.off()
+            sipkaVlevo.off()
+            sipkaVpravo.on()
+            levyMotor.reverse(100)
+            pravyMotor.forward(100)
+            time.sleep(0.1)
+            levyMotor.stop()
+            pravyMotor.stop()
+            sipkaVpravo.off()
+
+        elif data == b"e":
+            print("Vpred vpravo")
             sipkaVpred.off()
             sipkaVzad.off()
             sipkaVlevo.off()
